@@ -1,0 +1,156 @@
+{
+  "protocol": {
+    "dataset": "MovieLens 1M",
+    "positive_rating_threshold": "rating >= 4",
+    "split": "per-user chronological; latest 20% held out",
+    "minimum_positive_events": 5,
+    "candidate_set": "all 3,706 rated movies, excluding training interactions",
+    "k": 10,
+    "seed": 42
+  },
+  "data": {
+    "raw_ratings": 1000209,
+    "raw_users": 6040,
+    "catalog_items": 3706,
+    "positive_events": 575281,
+    "evaluated_users": 6034,
+    "train_events": 457813,
+    "test_events": 117459,
+    "rating_threshold": 4,
+    "minimum_positives": 5,
+    "test_fraction": 0.2
+  },
+  "environment": {
+    "timestamp_utc": "2026-07-25T00:17:49.679912+00:00",
+    "platform": "Linux-6.17.0-40-generic-x86_64-with-glibc2.39",
+    "cpu": "Intel(R) Core(TM) i9-9820X CPU @ 3.30GHz",
+    "logical_cpus": 20,
+    "python": "3.12.3",
+    "implicit": "0.7.3",
+    "numpy": "2.5.1",
+    "scipy": "1.18.0"
+  },
+  "data_preparation_seconds": 1.141402269997343,
+  "models": {
+    "Random": {
+      "hyperparameters": {
+        "seed": 42
+      },
+      "fit_seconds": 3.5230004868935794e-06,
+      "evaluation_seconds": 0.6164217650002684,
+      "metrics": {
+        "precision@10": 0.005485581703679182,
+        "recall@10": 0.002539337781535338,
+        "hit_rate@10": 0.052204176334106726,
+        "map@10": 0.001820321106198158,
+        "mrr@10": 0.016441882244003562,
+        "ndcg@10": 0.005799662466100104
+      }
+    },
+    "Popularity": {
+      "hyperparameters": {
+        "score": "training interaction count"
+      },
+      "fit_seconds": 0.0007326759987336118,
+      "evaluation_seconds": 0.41768395499821054,
+      "metrics": {
+        "precision@10": 0.07018561484918868,
+        "recall@10": 0.04264821958124744,
+        "hit_rate@10": 0.3680808750414319,
+        "map@10": 0.036653309737514135,
+        "mrr@10": 0.163047229719421,
+        "ndcg@10": 0.0791393665216526
+      }
+    },
+    "Item-KNN": {
+      "hyperparameters": {
+        "similarity": "cosine",
+        "neighbors": 100,
+        "num_threads": 10
+      },
+      "fit_seconds": 0.05415423199883662,
+      "evaluation_seconds": 0.7812619360011013,
+      "metrics": {
+        "precision@10": 0.08626118660921601,
+        "recall@10": 0.0635518380416263,
+        "hit_rate@10": 0.4622141199867418,
+        "map@10": 0.047677800857081655,
+        "mrr@10": 0.20279218029052293,
+        "ndcg@10": 0.10134180601914372
+      }
+    },
+    "ALS": {
+      "hyperparameters": {
+        "factors": 64,
+        "regularization": 0.01,
+        "alpha": 2.0,
+        "iterations": 20,
+        "use_cg": true,
+        "num_threads": 10,
+        "random_state": 42
+      },
+      "fit_seconds": 0.7797354229987832,
+      "evaluation_seconds": 0.6586350010002207,
+      "metrics": {
+        "precision@10": 0.08279748094133448,
+        "recall@10": 0.07599483811424858,
+        "hit_rate@10": 0.5023201856148491,
+        "map@10": 0.044323940158994796,
+        "mrr@10": 0.20255490053716776,
+        "ndcg@10": 0.10015016187893513
+      }
+    },
+    "BPR": {
+      "hyperparameters": {
+        "factors": 128,
+        "learning_rate": 0.01,
+        "regularization": 0.01,
+        "iterations": 3000,
+        "verify_negative_samples": true,
+        "num_threads": 10,
+        "random_state": 42
+      },
+      "fit_seconds": 94.68867716599925,
+      "evaluation_seconds": 0.6263393500012171,
+      "metrics": {
+        "precision@10": 0.06042426251243015,
+        "recall@10": 0.059944259697641014,
+        "hit_rate@10": 0.41531322505800466,
+        "map@10": 0.03231024522436181,
+        "mrr@10": 0.15642312609498615,
+        "ndcg@10": 0.07527853327504762
+      }
+    },
+    "NeuMF": {
+      "hyperparameters": {
+        "factors": 32,
+        "mlp_factors": 32,
+        "hidden_layers": [
+          64,
+          32,
+          16,
+          8
+        ],
+        "learning_rate": 0.001,
+        "regularization": 1e-06,
+        "iterations": 100,
+        "negative_samples": 4,
+        "batch_size": 4096,
+        "verify_negative_samples": true,
+        "inference_batch_size": 16384,
+        "num_threads": 1,
+        "random_state": 42
+      },
+      "fit_seconds": 1806.3488922449978,
+      "evaluation_seconds": 91.98264847300015,
+      "metrics": {
+        "precision@10": 0.07059993370898371,
+        "recall@10": 0.06035888068799864,
+        "hit_rate@10": 0.452933377527345,
+        "map@10": 0.035119840425336474,
+        "mrr@10": 0.17168143746284376,
+        "ndcg@10": 0.0830923831608832
+      }
+    }
+  }
+}

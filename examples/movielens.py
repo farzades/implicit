@@ -29,6 +29,7 @@ from implicit.nearest_neighbours import (
     TFIDFRecommender,
     bm25_weight,
 )
+from implicit.neumf import NeuMF
 
 log = logging.getLogger("implicit")
 
@@ -59,6 +60,9 @@ def calculate_similar_movies(output_filename, model_name="als", min_rating=4.0, 
 
     elif model_name == "lmf":
         model = LogisticMatrixFactorization()
+
+    elif model_name == "neumf":
+        model = NeuMF()
 
     elif model_name == "tfidf":
         model = TFIDFRecommender()
@@ -120,7 +124,7 @@ if __name__ == "__main__":
         type=str,
         default="als",
         dest="model",
-        help="model to calculate (als/bm25/tfidf/cosine)",
+        help="model to calculate (als/bpr/lmf/neumf/bm25/tfidf/cosine)",
     )
     parser.add_argument(
         "--variant",

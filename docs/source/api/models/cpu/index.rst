@@ -8,5 +8,6 @@ CPU Models
     AlternatingLeastSquares <als>
     BayesianPersonalizedRanking <bpr>
     LogisticMatrixFactorization <lmf>
+    NeuMF <neumf>
     Nearest Neighbours Models <knn>
     MatrixFactorizationBase <matrix_factorization_base>

@@ -76,7 +76,7 @@ def check_random_state(random_state):
     """
     # backwards compatibility
     if isinstance(random_state, np.random.RandomState):
-        return np.random.default_rng(random_state.rand_int(2**31))
+        return np.random.default_rng(random_state.randint(2**31))
 
     # otherwise try to initialize a new one, and let it fail through
     # on the numpy side if it doesn't work

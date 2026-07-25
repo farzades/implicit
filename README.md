@@ -18,10 +18,12 @@ Feedback Collaborative Filtering](https://pdfs.semanticscholar.org/bfdf/7af6cf7f
 
  * [Logistic Matrix Factorization](https://web.stanford.edu/~rezab/nips2014workshop/submits/logmat.pdf)
 
+ * [Neural Matrix Factorization (NeuMF)](https://arxiv.org/abs/1708.05031).
+
  * Item-Item Nearest Neighbour models using Cosine, TFIDF or BM25 as a distance metric.
 
-All models have multi-threaded training routines, using Cython and OpenMP to fit the models in
-parallel among all available CPU cores.  In addition, the ALS and BPR models both have custom CUDA
+The performance-critical paths use vectorized BLAS operations or Cython and OpenMP. In addition,
+the ALS and BPR models both have custom CUDA
 kernels - enabling fitting on compatible GPU's. Approximate nearest neighbours libraries such as [Annoy](https://github.com/spotify/annoy), [NMSLIB](https://github.com/searchivarius/nmslib)
 and [Faiss](https://github.com/facebookresearch/faiss) can also be used by Implicit to [speed up
 making recommendations](https://www.benfrederickson.com/approximate-nearest-neighbours-for-recommender-systems/).
